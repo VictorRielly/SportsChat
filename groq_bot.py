@@ -1,10 +1,18 @@
 from groq import Groq
 import os
+from dotenv import load_dotenv
 
+# Load environment variables from .env file
+load_dotenv()
 
-client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+global client
+
+client = Groq(api_key=GROQ_API_KEY)
+
 
 def chat_with_groq():
+        
     messages = [
         {
             "role": "system",

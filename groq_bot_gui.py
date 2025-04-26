@@ -1,6 +1,10 @@
 import tkinter as tk
-from tkinter import scrolledtext, StringVar, Entry, Button, END
+from tkinter import scrolledtext, StringVar, Entry, Button, END, messagebox
 import threading
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 from groq import Groq
 from groq_bot import client
 
@@ -10,6 +14,8 @@ class GroqChatGUI:
         self.root.title("Sports Chat with Groq")
         self.root.geometry("600x500")
         self.root.resizable(True, True)
+        
+        # Ensure the client is initialized
         
         # Initialize messages list
         self.messages = [
@@ -77,8 +83,17 @@ class GroqChatGUI:
         # Process message in separate thread to keep UI responsive
         threading.Thread(target=self.get_assistant_response).start()
     
+    def show_error(self, message):
+        """Display an error message and close the application"""
+        messagebox.showerror("Configuration Error", message)
+        self.root.after(1000, self.root.destroy)
+    
     def get_assistant_response(self):
         try:
+            # Ensure client is initialized
+            if client is None:
+                raise ValueError("Groq client is not initialized")
+                
             completion = client.chat.completions.create(
                 model="llama3-70b-8192",
                 messages=self.messages,

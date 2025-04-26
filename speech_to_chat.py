@@ -7,14 +7,20 @@ import tkinter as tk
 from deepgram import DeepgramClient, LiveTranscriptionEvents
 from dotenv import load_dotenv
 from groq_bot_gui import GroqChatGUI
+import groq_bot
 
 # Load environment variables from .env file
 load_dotenv()
 
-# Get API key from environment variable
+# Get API keys from environment variables
 DEEPGRAM_API_KEY = os.getenv("DEEPGRAM_API_KEY")
 if not DEEPGRAM_API_KEY:
     raise EnvironmentError("Please set the DEEPGRAM_API_KEY environment variable before running")
+
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+if not GROQ_API_KEY:
+    raise EnvironmentError("Please set the GROQ_API_KEY environment variable before running")
+
 
 # Audio settings
 FORMAT = pyaudio.paInt16
