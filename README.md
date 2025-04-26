@@ -8,24 +8,32 @@ A chat application for discussing sports topics using the Groq API with the llam
 - GUI interface built with tkinter
 - Streaming responses for a more natural conversation
 - Sports-focused conversation guardrails
+- Microphone transcription with Deepgram API
 
 ## Requirements
 
 - Python 3.6+
 - groq Python package
 - tkinter (for GUI version)
+- python-dotenv (for .env file support)
+- pyaudio and deepgram (for speech transcription)
 
 ## Installation
 
 1. Ensure you have Python installed
 2. Install the required packages:
    ```
-   pip install groq
+   pip install groq python-dotenv pyaudio deepgram
    ```
 3. tkinter is included with most Python installations. If not, install according to your OS:
    - Windows: Usually included with Python
    - macOS: `brew install python-tk`
    - Linux: `sudo apt-get install python3-tk`
+4. Create a .env file in the project root with your API keys:
+   ```
+   DEEPGRAM_API_KEY=your_deepgram_api_key_here
+   ```
+   You can get a Deepgram API key from https://console.deepgram.com/signup
 
 ## Usage
 
