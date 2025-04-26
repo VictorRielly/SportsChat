@@ -1,6 +1,8 @@
 from groq import Groq
+import os
 
-client = Groq(api_key="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")
+
+client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
 def chat_with_groq():
     messages = [

@@ -61,6 +61,12 @@ class GroqChatGUI:
         self.user_input.delete(0, END)
         self.add_message(f"You: {user_message}")
         
+        # Check if user wants to exit
+        if user_message.lower() == "exit":
+            self.add_message("Assistant: Goodbye! Closing the application...")
+            self.root.after(1500, self.root.destroy)
+            return
+        
         # Add message to history
         self.messages.append({"role": "user", "content": user_message})
         
